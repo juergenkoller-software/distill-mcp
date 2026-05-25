@@ -1,0 +1,12 @@
+{
+  "_comment": "Example Claude Desktop config for Distill MCP. Copy the 'distill' entry into your ~/Library/Application Support/Claude/claude_desktop_config.json under 'mcpServers'.",
+  "mcpServers": {
+    "distill": {
+      "command": "/usr/local/bin/DistillMCP",
+      "env": {
+        "DISTILL_PORT": "22200",
+        "DISTILL_TOKEN": "<paste-from-distill-settings-api-mcp>"
+      }
+    }
+  }
+}
