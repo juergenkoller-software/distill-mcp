@@ -100,7 +100,7 @@ Same pattern — `DistillMCP` is a stdio MCP server, configured via the two env 
 ┌────────────────┐  JSON-RPC stdio   ┌────────────────┐  HTTP+Bearer   ┌────────────────┐
 │  Claude/Cursor │ ───────────────►  │  DistillMCP    │ ─────────────► │  Distill.app   │
 │  (MCP client)  │ ◄───────────────  │   (this repo)  │ ◄───────────── │  (port 22200)  │
-└────────────────┘                    └────────────────┘                └────────────────┘
+└────────────────┘                   └────────────────┘                └────────────────┘
 ```
 
 The bridge reads JSON-RPC 2.0 requests from `stdin`, forwards them to Distill's local HTTP server at `127.0.0.1:22200/mcp`, and writes responses back to `stdout`. All AI calls (Claude/OpenAI/Gemini/Ollama/Apple Intelligence), file reading (OCR, PDF extraction, Office parsing), credit tracking, and naming logic happen inside the Distill app.
