@@ -4,6 +4,7 @@
 [![Platform](https://img.shields.io/badge/platform-macOS%2014%2B-blue.svg)](https://apple.com/macos)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![MCP](https://img.shields.io/badge/protocol-MCP-purple.svg)](https://modelcontextprotocol.io)
+[![juergenkoller-software/distill-mcp MCP server](https://glama.ai/mcp/servers/juergenkoller-software/distill-mcp/badges/score.svg)](https://glama.ai/mcp/servers/juergenkoller-software/distill-mcp)
 
 **Let Claude, Cursor, or any MCP client rename files for you — automatically, based on content.**
 
