@@ -6,7 +6,7 @@ struct DistillMCPServer {
     static func main() async throws {
         let server = Server(
             name: "distill",
-            version: "0.1.0",
+            version: "0.2.0",
             capabilities: .init(tools: .init(listChanged: false))
         )
 
@@ -17,13 +17,18 @@ struct DistillMCPServer {
         }
 
         await server.withMethodHandler(CallTool.self) { params in
+            // Doku-Tools funktionieren offline — der App-Check gilt nur für den Rest
+            if manualToolNames.contains(params.name) {
+                return handleManualTool(params)
+            }
             do {
-                guard await client.isAppRunning() else {
-                    return CallTool.Result(content: [.text("Distill ist nicht gestartet. Bitte die App öffnen.")], isError: true)
-                }
                 return try await handleTool(params, client: client)
+            } catch let apiError as DistillAPIError {
+                return CallTool.Result(content: [.text(apiError.message)], isError: true)
+            } catch where isUnreachable(error) {
+                return CallTool.Result(content: [.text(client.notReachableMessage)], isError: true)
             } catch {
-                return CallTool.Result(content: [.text("Fehler: \(error.localizedDescription)")], isError: true)
+                return CallTool.Result(content: [.text("Error: \(error.localizedDescription)")], isError: true)
             }
         }
 
