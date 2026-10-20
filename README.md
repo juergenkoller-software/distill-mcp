@@ -70,7 +70,7 @@ swift build -c release
 
 ### Pre-built binary
 
-Grab the latest `DistillMCP` from [Releases](https://github.com/juergenkoller-software/distill-mcp/releases).
+Not needed on a Mac: the website version of Distill ships the bridge (see above). The binary attached to [Releases](https://github.com/juergenkoller-software/distill-mcp/releases) is a static Linux x86_64 build for container-based MCP registries such as Glama; it does not run on macOS.
 
 ---
 
