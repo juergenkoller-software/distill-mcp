@@ -147,7 +147,7 @@ Every refusal comes back as an MCP error (`isError: true`) with a sentence the a
 | Legal texts not accepted (HTTP 403 `legal_not_accepted`) | The user opens the Distill window and accepts in the “Legal Notice” sheet; an agent cannot do this |
 | Any other HTTP error | Status code and Distill's error text, e.g. `engine not ready` while the app starts |
 
-Before version 0.2.0 the bridge ignored the HTTP status, so these refusals looked like successful calls.
+Before version 1.1.0 the bridge ignored the HTTP status, so these refusals looked like successful calls.
 
 ---
 

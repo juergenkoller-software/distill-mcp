@@ -1,0 +1,47 @@
+name: Release binary
+
+# Attaches a static Linux x86_64 build to a published release, for
+# container-based MCP registries such as Glama. Not for macOS.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to attach the binary to
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    container: swift:6.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build (release, static Swift stdlib)
+        run: swift build -c release --product DistillMCP --static-swift-stdlib
+
+      - name: Rename binary
+        run: cp .build/release/DistillMCP distill-mcp-linux-x86_64
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distill-mcp-linux-x86_64
+          path: distill-mcp-linux-x86_64
+
+  upload:
+    needs: linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: distill-mcp-linux-x86_64
+
+      - name: Attach to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        run: gh release upload "$TAG" distill-mcp-linux-x86_64 --clobber -R "$GITHUB_REPOSITORY"

@@ -5,7 +5,7 @@ import FoundationNetworking
 
 /// A non-2xx answer from Distill's local API.
 ///
-/// Before 0.2.0 the bridge ignored the HTTP status: a wrong token or the
+/// Before 1.1.0 the bridge ignored the HTTP status: a wrong token or the
 /// missing consent to the legal texts came back as a normal tool result.
 /// Now every refusal becomes an MCP error with a sentence the agent can act on.
 struct DistillAPIError: Error {
